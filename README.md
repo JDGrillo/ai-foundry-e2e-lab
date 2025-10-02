@@ -110,19 +110,33 @@ python -m ipykernel install --user --name=ai-foundry-lab --display-name="AI Foun
    | Model Type | Recommended Models | Purpose |
    |------------|-------------------|---------|
    | **Chat/Completion** | `gpt-4o`, `gpt-4o-mini` | Primary reasoning & conversation |
-   | **Embeddings** | `text-embedding-3-large` | Vector search & RAG |
+   | **Text Embeddings** | `text-embedding-3-large` | Vector search & RAG |
    | **Specialized** | `phi-4`, `deepseek-r1` | Domain-specific tasks |
-   | **Search Service** | `Azure AI Search` | Knowledge base & enterprise search integration |
 
-3. **Configure Environment Variables**
+3. **Configure an Azure OpenAI Resource**
+   - Create an Azure OpenAI resource in the same region as your AI Foundry project
+   - Connect this resource to your AI Foundry project
+      - Navigate to your AI Foundry project → Management Center → Connected Resources → Add Connection → Select Azure OpenAI
+
+4. **Configure Azure Search Service**
+   - Create an Azure AI Search resource in Azure
+   - Connect this resource to your AI Foundry project
+      - Navigate to your AI Foundry project → Management Center → Connected Resources → Add Connection → Select Azure AI Search
+
+5. **Configure Grounding with Bing Search**
+   - Create a new Grounding with Bing Search resource in Azure
+   - Connect this resource to your AI Foundry project
+      - Navigate to your AI Foundry project → Management Center → Connected Resources → Add Connection → Select Grounding with Bing Search
+
+6. **Configure Environment Variables**
    ```env
-   PROJECT_CONNECTION_STRING=your-project-connection-string
+   AI_FOUNDRY_PROJECT_ENDPOINT=your-project-connection-string
    AZURE_AI_PROJECT_ENDPOINT=your-azure-ai-project-endpoint
-   MODEL_DEPLOYMENT_NAME=your-primary-model-deployment-name
-   EMBEDDING_MODEL_DEPLOYMENT_NAME=your-embedding-model-deployment-name
+   COMPLETIONS_MODEL_DEPLOYMENT_NAME=your-primary-model-deployment-name
+   TEXT_EMBEDDING_MODEL_DEPLOYMENT_NAME=your-embedding-model-deployment-name
    TENANT_ID=your-azure-tenant-id
    GROUNDING_WITH_BING_CONNECTION_NAME=your-bing-search-connection-name
-   SERVERLESS_MODEL_NAME=your-serverless-model-name
+   SERVERLESS_MODEL_DEPLOYMENT_NAME=your-serverless-model-name
    
    # Additional info for Knowledge (Azure AI Search)
    AZURE_AI_SEARCH_ENDPOINT=your-azure-ai-search-endpoint

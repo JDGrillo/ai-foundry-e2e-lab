@@ -3,6 +3,7 @@ import asyncio
 import json
 from dotenv import load_dotenv
 from contextlib import AsyncExitStack
+
 # Add references
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
@@ -12,12 +13,16 @@ from azure.identity import DefaultAzureCredential
 
 
 # Clear the console
-os.system('cls' if os.name=='nt' else 'clear')
+os.system("cls" if os.name == "nt" else "clear")
 
 # Load environment variables from .env file
-load_dotenv('../.env')  # Load from root directory
-project_endpoint = os.getenv("PROJECT_CONNECTION_STRING") or os.getenv("AZURE_AI_PROJECT_ENDPOINT") or os.getenv("PROJECT_ENDPOINT")
-model_deployment = os.getenv("MODEL_DEPLOYMENT_NAME")
+load_dotenv("../.env")  # Load from root directory
+project_endpoint = (
+    os.getenv("AI_FOUNDRY_PROJECT_ENDPOINT")
+    or os.getenv("AZURE_AI_PROJECT_ENDPOINT")
+    or os.getenv("PROJECT_ENDPOINT")
+)
+model_deployment = os.getenv("COMPLETIONS_MODEL_DEPLOYMENT_NAME")
 
 # Verify configuration is loaded
 print(f"Project Endpoint: {project_endpoint}")
@@ -30,17 +35,16 @@ if not model_deployment:
     print("❌ Error: No model deployment found. Check your .env file.")
     exit(1)
 
+
 async def connect_to_server(exit_stack: AsyncExitStack):
     server_params = StdioServerParameters(
-        command="python",
-        args=["server.py"],
-        env=None
+        command="python", args=["server.py"], env=None
     )
 
     # Start the MCP server
     stdio_transport = await exit_stack.enter_async_context(stdio_client(server_params))
     stdio, write = stdio_transport
-    
+
     # Create an MCP client session
     session = await exit_stack.enter_async_context(ClientSession(stdio, write))
     await session.initialize()
@@ -52,12 +56,12 @@ async def connect_to_server(exit_stack: AsyncExitStack):
 
     return session
 
+
 async def chat_loop(session):
 
     # Connect to the agents client
     agents_client = AgentsClient(
-        endpoint=project_endpoint,
-        credential=DefaultAzureCredential()
+        endpoint=project_endpoint, credential=DefaultAzureCredential()
     )
 
     # List tools available on the server
@@ -69,7 +73,7 @@ async def chat_loop(session):
         async def tool_func(**kwargs):
             result = await session.call_tool(tool_name, kwargs)
             return result
-        
+
         tool_func.__name__ = tool_name
         return tool_func
 
@@ -85,7 +89,7 @@ async def chat_loop(session):
         - Recommend restock if item inventory < 10 and weekly sales > 15
         - Recommend clearance if item inventory > 20 and weekly sales < 5
         """,
-        tools=mcp_function_tool.definitions
+        tools=mcp_function_tool.definitions,
     )
 
     # Enable auto function calling
@@ -95,7 +99,9 @@ async def chat_loop(session):
     thread = agents_client.threads.create()
 
     while True:
-        user_input = input("Enter a prompt for the inventory agent. Use 'quit' to exit.\nUSER: ").strip()
+        user_input = input(
+            "Enter a prompt for the inventory agent. Use 'quit' to exit.\nUSER: "
+        ).strip()
         if user_input.lower() == "quit":
             print("Exiting chat.")
             break
@@ -128,20 +134,26 @@ async def chat_loop(session):
                     output = await required_function(**kwargs)
 
                     # Append the output text
-                    tool_outputs.append({
-                        "tool_call_id": tool_call.id,
-                        "output": output.content[0].text,
-                    })
-                
+                    tool_outputs.append(
+                        {
+                            "tool_call_id": tool_call.id,
+                            "output": output.content[0].text,
+                        }
+                    )
+
                 # Submit the tool call output
-                agents_client.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
-                
+                agents_client.runs.submit_tool_outputs(
+                    thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs
+                )
+
         # Check for failure
         if run.status == "failed":
             print(f"Run failed: {run.last_error}")
 
         # Display the response
-        messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+        messages = agents_client.messages.list(
+            thread_id=thread.id, order=ListSortOrder.ASCENDING
+        )
         for message in messages:
             if message.text_messages:
                 last_msg = message.text_messages[-1]
@@ -155,12 +167,14 @@ async def chat_loop(session):
 
 async def main():
     import sys
+
     exit_stack = AsyncExitStack()
     try:
         session = await connect_to_server(exit_stack)
         await chat_loop(session)
     finally:
         await exit_stack.aclose()
+
 
 if __name__ == "__main__":
     asyncio.run(main())

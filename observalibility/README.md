@@ -20,7 +20,7 @@ Before running the evaluations, you'll need:
      AZURE_OPENAI_DEPLOYMENT=your_deployment_name
 
      # Azure AI Foundry Project Connection String
-     PROJECT_CONNECTION_STRING=your_project_connection_string
+     AI_FOUNDRY_PROJECT_ENDPOINT=your_project_connection_string
      ```
 
 3. **Required Python Packages**:
