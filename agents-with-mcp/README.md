@@ -68,8 +68,8 @@ The `.env` file already contains your Azure project configuration.
 ### Step 3: Verify Your Configuration
 
 The project will automatically use these values from the root `.env` file:
-- `PROJECT_CONNECTION_STRING`: Your Azure AI project endpoint
-- `MODEL_DEPLOYMENT_NAME`: Your deployed model (currently: `gpt-4o`)
+- `AI_FOUNDRY_PROJECT_ENDPOINT`: Your Azure AI project endpoint
+- `COMPLETIONS_MODEL_DEPLOYMENT_NAME`: Your deployed model (currently: `gpt-4o`)
 - `TENANT_ID`: Your Azure tenant ID
 
 ### Step 4: Run the MCP Demo
@@ -215,7 +215,7 @@ az login
 
 **"Agent creation failed"**  
 - Verify your `.env` file has correct Azure project details
-- Check that your deployed model name matches `MODEL_DEPLOYMENT_NAME`
+- Check that your deployed model name matches `COMPLETIONS_MODEL_DEPLOYMENT_NAME`
 - Ensure you have proper permissions in Azure AI Foundry
 
 ### Debug Mode
