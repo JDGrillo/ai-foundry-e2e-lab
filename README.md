@@ -43,13 +43,13 @@ This comprehensive laboratory transforms you from an AI enthusiast into an Azure
 ```
 agentic-ai-lab/
 ├── 📚 initial-setup/           # Start here - Authentication & environment setup
-├── 💬 chat-rag/               # Chat completion and RAG fundamentals
-├── 🤖 agents/                 # AI Agents development and tools (includes multi-agent)
-├── 🔌 agents-with-mcp/        # Model Context Protocol (MCP) integration
-├── 🔴 ai-red-teaming-agent/   # AI Red Teaming and Security Testing
-├── 🤖⚙️ agent-framework/        # Microsoft Agent Framework for advanced agent development
+├── 💬 chat-rag/                # Chat completion and RAG fundamentals
+├── 🤖 agents/                  # AI Agents development and tools (includes multi-agent)
+├── 🔌 agents-with-mcp/         # Model Context Protocol (MCP) integration
+├── 🔴 ai-red-teaming-agent/    # AI Red Teaming and Security Testing
+├── 🤖⚙️ agent-framework/      # Microsoft Agent Framework for advanced agent development
 ├── 🏗️ sk-and-autogen/          # Semantic Kernel and AutoGen frameworks
-├── 📊 observalibility/         # Monitoring, evaluation, and quality assurance
+├── 📊 observability/           # Monitoring, evaluation, and quality assurance
 ├── 🗣️ ai-language/             # AI Language Services with Logic Apps low-code workflows
 ├── 👁️ ai-vision/               # AI Vision Services with low-code solutions
 ├── 📄 content-understanding/   # Document classification and content extraction
@@ -90,7 +90,9 @@ pip install -r requirements.txt
 1. **Create Azure AI Foundry Project**
    - Navigate to [Azure AI Foundry Portal](https://ai.azure.com)
    - Create a new project with Standard pricing tier
-   - Choose region based on model availability (East US 2 recommended)
+   - Choose region based on model availability (West US recommended)
+
+<img src="project-creation.png" width="45%"/>
 
 2. **Deploy Required Models & Services**
    
