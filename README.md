@@ -91,11 +91,11 @@ pip install -r requirements.txt
    - If an AI Foundry resource does not exist, create one in the [Azure Portal](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal) (West US recommended region if Content Understanding is needed, otherwise East US 2 is preferred)
       - This will create a default Project
 
-<img src="foundry-resource-creation.png" width="45%"/>
+<img src="images/foundry-resource-creation.png" width="45%"/>
    
    - If an AI Foundry resource already exists, create a new [Project](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry#create-multiple) (same region recommendation as above)
 
-<img src="project-creation.png" width="45%"/>
+<img src="images/project-creation.png" width="45%"/>
 
 2. **Deploy Required Models & Services**
    
@@ -110,7 +110,7 @@ pip install -r requirements.txt
        <img src="images/DeployModels.png" width="75%"/>
 
 3. **Configure an Azure Search Service**
-   - Create an Azure AI Search resource in Azure
+   - Create an [Azure AI Search resource](https://learn.microsoft.com/en-us/azure/search/search-create-service-portal) in Azure
    - Connect this resource to your AI Foundry project
       - Navigate to your AI Foundry project → Management Center → Connected Resources → Add Connection → Select Azure AI Search
       <img src="images/foundry-connection.png" width="75%"/>
