@@ -97,6 +97,16 @@ pip install -r requirements.txt
 
 <img src="images/project-creation.png" width="60%"/>
 
+   | Project details | Description |
+   |----------------|-------------|
+   | **Subscription** | Select one of your available Azure subscriptions. |
+   | **Resource group** | The Azure resource group that will contain your Azure AI Foundry resource. You can create a new group or add it to a preexisting group. |
+   | **Region** | The location of your Azure AI service instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+   | **Name** | A descriptive name for your Azure AI Foundry resource. For example, MyAIServicesResource. |
+   | **Default Project Name** | Keep the default project as it is. |
+
+   - Keep other settings for your resource as default, read and accept the conditions (as applicable), and then select **Review + create**.
+   
 2. **Deploy Required Models & Services**
    
    | Model Type | Recommended Models | Purpose |
