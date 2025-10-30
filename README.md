@@ -91,11 +91,11 @@ pip install -r requirements.txt
    - If an AI Foundry resource does not exist, create one in the [Azure Portal](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal) (West US recommended region if Content Understanding is needed, otherwise East US 2 is preferred)
       - This will create a default Project
 
-<img src="images/foundry-resource-creation.png" width="45%"/>
+<img src="images/foundry-resource-creation.png" width="60%"/>
    
    - If an AI Foundry resource already exists, create a new [Project](https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry#create-multiple) (same region recommendation as above)
 
-<img src="images/project-creation.png" width="45%"/>
+<img src="images/project-creation.png" width="60%"/>
 
 2. **Deploy Required Models & Services**
    
@@ -130,8 +130,8 @@ pip install -r requirements.txt
    - Many of the Environment Variables needed can be found in the Overview tab of your Azure AI Foundry project or the connected resources in the Management Center tab
    - For example, AZURE_OPENAI variables-
 <img src="images/env-example.png" width="75%"/>  
+
    - For Content Understanding, use the Azure AI Services endpoint
----
 
 ## 📚 Learning Path
 
