@@ -104,10 +104,10 @@ pip install -r requirements.txt
    | **Chat/Completion** | `gpt-4o`, `gpt-4o-mini` | Primary reasoning & conversation |
    | **Text Embeddings** | `text-embedding-3-large` | Vector search & RAG |
 
-   - On the left Nav Menu of the foundry portal go to Models+endpoints
-   - Click Deploy a model button-->Deploy base model
-      - Search for the models in the table above , select a model, click confirm and Deploy and connect
-       <img src="images/DeployModels.png" width="75%"/>
+   - On the left navigation menu of the Foundry portal go to Models + endpoints
+   - Deploy model -> Deploy base model
+      - Search for the models in the table above and deploy them into your Foundry Project
+       <img src="images/deploy-models.png" width="75%"/>
 
 3. **Configure an Azure Search Service**
    - Create an [Azure AI Search resource](https://learn.microsoft.com/en-us/azure/search/search-create-service-portal) in Azure
@@ -130,7 +130,7 @@ pip install -r requirements.txt
    - Many of the Environment Variables needed can be found in the Overview tab of your Azure AI Foundry project or the connected resources in the Management Center tab
    - For example, AZURE_OPENAI variables-
 <img src="images/env-example.png" width="75%"/>  
-
+   - For Content Understanding, use the Azure AI Services endpoint
 ---
 
 ## 📚 Learning Path
